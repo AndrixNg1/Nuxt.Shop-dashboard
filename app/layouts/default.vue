@@ -1,12 +1,22 @@
 <script setup lang="ts">
 const isSidebarOpen = ref(false);
-const closeSidebar = () => {
-  isSidebarOpen.value = false;
-};
+const closeSidebar = () => { isSidebarOpen.value = false; };
 const isNotifOpen = ref(false);
-const toggleNotif = () => {
-  isNotifOpen.value = !isNotifOpen.value;
+const toggleNotif = () => { isNotifOpen.value = !isNotifOpen.value; };
+
+const route = useRoute();
+
+const pageNames: Record<string, string> = {
+  '/': 'Vue d\'ensemble',
+  '/orders': 'Commandes',
+  '/products': 'Produits',
+  '/customers': 'Clients',
+  '/analytics': 'Analyses',
+  '/settings': 'Paramètres',
+  '/notifications': 'Notifications',
 };
+
+const currentPageName = computed(() => pageNames[route.path] ?? route.path.replace('/', ''));
 </script>
 
 <template>
@@ -39,9 +49,9 @@ const toggleNotif = () => {
             support</button>
         </div>
         <div class="profile">
-          <div class="avatar avatar--small">AM</div>
+          <div class="avatar avatar--small">AN</div>
           <div class="profile__info">
-            <strong>Alex Martin</strong><span>Administrateur</span>
+            <strong>Andrix-ng</strong><span>Administrateur</span>
           </div>
           <span class="profile__more">•••</span>
         </div>
@@ -50,15 +60,15 @@ const toggleNotif = () => {
     <div v-if="isSidebarOpen" class="sidebar-overlay" @click="closeSidebar" />
     <main class="main-content">
       <header
-        class="h-[76px] px-6 lg:px-10 flex items-center bg-white dark:bg-[#20202d] border-b border-gray-200 dark:border-gray-800 transition-colors duration-250 z-10 w-full shadow-sm">
+        class="sticky top-0 z-30 h-[76px] px-6 lg:px-10 flex items-center bg-white dark:bg-[#20202d] border-b border-gray-200 dark:border-gray-800 transition-colors duration-250 w-full shadow-sm flex-shrink-0">
         <button class="lg:hidden text-gray-500 text-2xl mr-4 bg-transparent border-none focus:outline-none"
           aria-label="Ouvrir le menu" @click="isSidebarOpen = true">
           ☰
         </button>
         <div class="text-sm text-gray-400 dark:text-gray-500 flex items-center">
-          <span class="font-medium">Storeflow</span>
-          <b class="mx-3 font-normal text-gray-300">/</b>
-          <strong class="text-gray-800 dark:text-gray-100 font-bold">Vue d'ensemble</strong>
+          <span class="font-medium text-gray-400 dark:text-gray-500">Storeflow</span>
+          <b class="mx-3 font-normal text-gray-300 dark:text-gray-700">/</b>
+          <strong class="text-gray-800 dark:text-gray-100 font-bold">{{ currentPageName }}</strong>
         </div>
         <div class="flex items-center gap-4 lg:gap-6 ml-auto">
           <!-- Barre de recherche -->
