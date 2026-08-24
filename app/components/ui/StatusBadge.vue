@@ -5,25 +5,28 @@ withDefaults(
 );
 
 const variantClass: Record<string, string> = {
-  success: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  warning: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
-  danger:  'bg-red-100   text-red-700   dark:bg-red-900/30   dark:text-red-400',
-  info:    'bg-blue-100  text-blue-700  dark:bg-blue-900/30  dark:text-blue-400',
-  neutral: 'bg-gray-100  text-gray-600  dark:bg-gray-800     dark:text-gray-400',
+  success: 'bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30',
+  warning: 'bg-amber-100   text-amber-800   border border-amber-200   dark:bg-amber-500/20  dark:text-amber-300  dark:border-amber-500/30',
+  danger:  'bg-red-100     text-red-800     border border-red-200     dark:bg-red-500/20    dark:text-red-300    dark:border-red-500/30',
+  info:    'bg-sky-100     text-sky-800     border border-sky-200     dark:bg-sky-500/20    dark:text-sky-300    dark:border-sky-500/30',
+  neutral: 'bg-gray-100    text-gray-700    border border-gray-200    dark:bg-gray-700/40   dark:text-gray-300   dark:border-gray-600/40',
 };
 
 const dotClass: Record<string, string> = {
-  success: 'bg-green-500',
-  warning: 'bg-yellow-500',
+  success: 'bg-emerald-500',
+  warning: 'bg-amber-500',
   danger:  'bg-red-500',
-  info:    'bg-blue-500',
+  info:    'bg-sky-500',
   neutral: 'bg-gray-400',
 };
 </script>
 
 <template>
-  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold" :class="variantClass[variant!]">
-    <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" :class="dotClass[variant!]"></span>
+  <span
+    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide whitespace-nowrap"
+    :class="variantClass[variant!]"
+  >
+    <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse" :class="dotClass[variant!]"></span>
     <slot />
   </span>
 </template>
