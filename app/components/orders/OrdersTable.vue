@@ -71,7 +71,6 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
           class="group cursor-pointer transition-all duration-200 hover:bg-purple-50/40 dark:hover:bg-purple-900/[0.08]"
           @click="emit('view', order.id)"
         >
-          <!-- Checkbox -->
           <td class="py-4 pr-4 border-b border-gray-50 dark:border-gray-800/40" @click.stop>
             <input
               type="checkbox"
@@ -81,12 +80,10 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
             />
           </td>
 
-          <!-- ID -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <span class="font-bold text-sm text-gray-900 dark:text-white font-mono">{{ order.id }}</span>
           </td>
 
-          <!-- Client -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <div class="flex items-center gap-3">
               <UserAvatar :initials="order.initials" size="sm" />
@@ -96,25 +93,20 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
             </div>
           </td>
 
-          <!-- Produit -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <span class="text-sm text-gray-600 dark:text-gray-400">{{ order.product }}</span>
           </td>
 
-          <!-- Date -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <span class="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">{{ order.date }}</span>
           </td>
 
-          <!-- Montant -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <span class="font-bold text-sm text-gray-900 dark:text-white">{{ order.amount }}</span>
           </td>
 
-          <!-- Statut (cliquable pour changer) -->
           <td class="py-4 border-b border-gray-50 dark:border-gray-800/40" @click.stop>
             <div class="relative flex items-center gap-3">
-              <!-- Badge cliquable -->
               <button
                 class="flex items-center gap-1 focus:outline-none group/status"
                 :title="`Changer le statut (${order.statusLabel})`"
@@ -130,7 +122,6 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
                 </svg>
               </button>
 
-              <!-- Dropdown statuts -->
               <transition
                 enter-active-class="transition ease-out duration-150"
                 enter-from-class="transform opacity-0 scale-95 -translate-y-1"
@@ -157,7 +148,6 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
                 </div>
               </transition>
 
-              <!-- Bouton voir (survol) -->
               <button
                 class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-auto p-1.5 rounded-lg text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30 flex-shrink-0"
                 title="Voir le détail"

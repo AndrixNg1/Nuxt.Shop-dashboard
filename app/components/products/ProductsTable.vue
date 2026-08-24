@@ -7,7 +7,6 @@ export interface Product {
   stock: number;
   status: 'active' | 'draft' | 'archived' | 'out_of_stock';
   statusLabel: string;
-  image: string;
 }
 
 defineProps<{
@@ -78,7 +77,6 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
           class="group cursor-pointer transition-all duration-200 hover:bg-purple-50/40 dark:hover:bg-purple-900/[0.08]"
           @click="emit('edit', product.id)"
         >
-          <!-- Checkbox -->
           <td class="py-4 pr-4 border-b border-gray-50 dark:border-gray-800/40" @click.stop>
             <input
               type="checkbox"
@@ -88,11 +86,10 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
             />
           </td>
 
-          <!-- Produit (Image + Nom) -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
-                <span class="text-xl">{{ product.image }}</span>
+              <div class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0 text-gray-400 dark:text-gray-500">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
               </div>
               <div class="flex flex-col">
                 <span class="font-bold text-sm text-gray-900 dark:text-white">{{ product.name }}</span>
@@ -101,17 +98,14 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
             </div>
           </td>
 
-          <!-- Catégorie -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <span class="text-sm font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-lg">{{ product.category }}</span>
           </td>
 
-          <!-- Prix -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <span class="font-bold text-sm text-gray-900 dark:text-white">{{ product.price }}</span>
           </td>
 
-          <!-- Stock -->
           <td class="py-4 pr-6 border-b border-gray-50 dark:border-gray-800/40">
             <div class="flex items-center gap-2">
               <div class="w-1.5 h-1.5 rounded-full" :class="product.stock > 10 ? 'bg-emerald-500' : product.stock > 0 ? 'bg-amber-500' : 'bg-red-500'"></div>
@@ -121,7 +115,6 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
             </div>
           </td>
 
-          <!-- Statut (cliquable pour changer) -->
           <td class="py-4 border-b border-gray-50 dark:border-gray-800/40" @click.stop>
             <div class="relative flex items-center gap-3">
               <button
@@ -165,7 +158,6 @@ onUnmounted(() => document.removeEventListener('click', () => { openStatusId.val
                 </div>
               </transition>
 
-              <!-- Bouton edit -->
               <button
                 class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-auto p-1.5 rounded-lg text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30 flex-shrink-0"
                 title="Modifier"

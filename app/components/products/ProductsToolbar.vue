@@ -22,7 +22,6 @@ const filters = [
 
 <template>
   <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-    <!-- Barre de recherche & Filtres -->
     <div class="flex flex-col sm:flex-row sm:items-center gap-4 flex-1">
       <div class="relative w-full sm:max-w-sm shrink-0">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -54,7 +53,6 @@ const filters = [
       </div>
     </div>
 
-    <!-- Actions supplémentaires (Filtres avancés) -->
     <div class="flex items-center gap-3 shrink-0">
       <button class="flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-[#20202d] border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors focus:outline-none">
         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>

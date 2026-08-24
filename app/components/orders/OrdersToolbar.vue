@@ -22,7 +22,6 @@ const filters = [
 
 <template>
   <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-    <!-- Barre de recherche -->
     <div class="relative flex-1 max-w-sm">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +37,6 @@ const filters = [
       />
     </div>
 
-    <!-- Filtres par statut -->
     <div class="flex items-center gap-2 flex-wrap">
       <button
         v-for="f in filters"
@@ -53,7 +51,6 @@ const filters = [
       </button>
     </div>
 
-    <!-- Compteur résultats -->
     <p class="text-xs text-gray-400 dark:text-gray-500 ml-auto hidden lg:block shrink-0">
       {{ filtered }} / {{ total }} commandes
     </p>
