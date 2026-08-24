@@ -6,7 +6,7 @@ useHead({
   meta: [{ name: 'description', content: 'Gérez et suivez toutes vos commandes.' }]
 });
 
-const allOrders: Order[] = [
+const allOrders = ref<Order[]>([
   { id: '#SF-10482', customer: 'Sophie Dubois',    initials: 'SD', product: 'Pack essentiel',   date: '24 août 2026',  amount: '129,00 €', status: 'success', statusLabel: 'Payée' },
   { id: '#SF-10481', customer: 'Thomas Bernard',   initials: 'TB', product: 'Abonnement Pro',   date: '24 août 2026',  amount: '89,00 €',  status: 'warning', statusLabel: 'En attente' },
   { id: '#SF-10480', customer: 'Emma Laurent',     initials: 'EL', product: 'Kit découverte',   date: '23 août 2026',  amount: '49,90 €',  status: 'success', statusLabel: 'Payée' },
@@ -19,14 +19,14 @@ const allOrders: Order[] = [
   { id: '#SF-10473', customer: 'David Girard',     initials: 'DG', product: 'Kit découverte',   date: '20 août 2026',  amount: '49,90 €',  status: 'danger',  statusLabel: 'Remboursée' },
   { id: '#SF-10472', customer: 'Élodie Rousseau',  initials: 'ER', product: 'Abonnement Pro',   date: '19 août 2026',  amount: '89,00 €',  status: 'success', statusLabel: 'Payée' },
   { id: '#SF-10471', customer: 'Maxime Blanc',     initials: 'MB', product: 'Offre Premium',    date: '19 août 2026',  amount: '199,00 €', status: 'info',    statusLabel: 'Expédiée' },
-];
+]);
 
 const search        = ref('');
 const activeFilter  = ref('all');
 const selectedIds   = ref<string[]>([]);
 
 const filteredOrders = computed(() => {
-  let list = allOrders;
+  let list = allOrders.value;
   if (activeFilter.value !== 'all') {
     list = list.filter(o => o.status === activeFilter.value);
   }
@@ -42,16 +42,21 @@ const filteredOrders = computed(() => {
 });
 
 const statusSummary = computed(() => ({
-  total:   allOrders.length,
-  paid:    allOrders.filter(o => o.status === 'success').length,
-  pending: allOrders.filter(o => o.status === 'warning').length,
-  shipped: allOrders.filter(o => o.status === 'info').length,
+  total:   allOrders.value.length,
+  paid:    allOrders.value.filter(o => o.status === 'success').length,
+  pending: allOrders.value.filter(o => o.status === 'warning').length,
+  shipped: allOrders.value.filter(o => o.status === 'info').length,
 }));
 
 function toggleSelect(id: string) {
   const idx = selectedIds.value.indexOf(id);
   if (idx === -1) selectedIds.value.push(id);
   else            selectedIds.value.splice(idx, 1);
+}
+
+function changeStatus(id: string, status: Order['status'], label: string) {
+  const order = allOrders.value.find(o => o.id === id);
+  if (order) { order.status = status; order.statusLabel = label; }
 }
 
 function viewOrder(id: string) {
@@ -134,6 +139,7 @@ function viewOrder(id: string) {
         :selected-ids="selectedIds"
         @select="toggleSelect"
         @view="viewOrder"
+        @status-change="changeStatus"
       />
 
       <!-- Pagination -->
