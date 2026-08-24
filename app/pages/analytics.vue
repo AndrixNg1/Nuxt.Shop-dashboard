@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue';
 import CatalogPageHeader from '~/components/catalog/CatalogPageHeader.vue';
 import AnalyticsChart from '~/components/analytics/AnalyticsChart.vue';
+import AnalyticsComparisonChart from '~/components/analytics/AnalyticsComparisonChart.vue';
+import AnalyticsCustomersChart from '~/components/analytics/AnalyticsCustomersChart.vue';
 
 useHead({
   title: 'Analyses — Storeflow',
@@ -59,6 +61,25 @@ const chartData = computed(() => {
   // Default 30d
   return Array.from({ length: 30 }, () => Math.floor(Math.random() * 2000) + 1000);
 });
+
+// Comparison Data
+const comparisonOrdersData = computed(() => {
+  if (selectedPeriod.value === '7d') return [12, 19, 15, 22, 18, 25, 31];
+  if (selectedPeriod.value === 'year') return [120, 150, 140, 180, 220, 240, 210, 250, 280, 270, 320, 450];
+  if (selectedPeriod.value === 'today') return [1, 0, 4, 8, 12, 15, 11];
+  return Array.from({ length: 30 }, () => Math.floor(Math.random() * 20) + 10);
+});
+
+const comparisonProductsData = computed(() => {
+  if (selectedPeriod.value === '7d') return [24, 38, 30, 44, 36, 50, 62];
+  if (selectedPeriod.value === 'year') return [240, 300, 280, 360, 440, 480, 420, 500, 560, 540, 640, 900];
+  if (selectedPeriod.value === 'today') return [2, 0, 8, 16, 24, 30, 22];
+  return Array.from({ length: 30 }, () => Math.floor(Math.random() * 40) + 20);
+});
+
+// Top Customers Data
+const topCustomersLabels = ['Sophie Dubois', 'Thomas Bernard', 'Emma Laurent', 'Lucas Moreau', 'Camille Petit'];
+const topCustomersData = [1450, 890, 640, 295, 49];
 
 // Recent activity mock
 const recentActivities = [
@@ -216,6 +237,37 @@ const recentOrders = [
           </div>
         </template>
       </ClientOnly>
+    </section>
+
+    <!-- Secondary Charts: Comparison & Top Customers -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Products vs Orders -->
+      <div class="bg-white dark:bg-[#20202d] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 flex flex-col">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Produits vs Commandes</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Comparaison des volumes sur la période</p>
+        <ClientOnly>
+          <AnalyticsComparisonChart :labels="chartLabels" :ordersData="comparisonOrdersData" :productsData="comparisonProductsData" />
+          <template #fallback>
+            <div class="w-full h-[300px] flex items-center justify-center bg-gray-50 dark:bg-[#1b1a26] rounded-xl border border-gray-100 dark:border-gray-800 animate-pulse">
+              <p class="text-sm font-medium text-gray-400">Chargement...</p>
+            </div>
+          </template>
+        </ClientOnly>
+      </div>
+
+      <!-- Top Customers -->
+      <div class="bg-white dark:bg-[#20202d] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 flex flex-col">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Meilleurs Clients</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Classement par volume de dépenses</p>
+        <ClientOnly>
+          <AnalyticsCustomersChart :labels="topCustomersLabels" :data="topCustomersData" />
+          <template #fallback>
+            <div class="w-full h-[300px] flex items-center justify-center bg-gray-50 dark:bg-[#1b1a26] rounded-xl border border-gray-100 dark:border-gray-800 animate-pulse">
+              <p class="text-sm font-medium text-gray-400">Chargement...</p>
+            </div>
+          </template>
+        </ClientOnly>
+      </div>
     </section>
 
     <!-- Bottom Grids: Recent Activity & Recent Orders -->
