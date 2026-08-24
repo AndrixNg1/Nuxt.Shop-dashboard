@@ -35,7 +35,7 @@ const chartData = computed<ChartData<'bar'>>(() => {
       {
         label: "Commandes",
         data: props.ordersData,
-        backgroundColor: '#0ea5e9', // sky-500
+        backgroundColor: '#0ea5e9',
         borderRadius: 4,
         barPercentage: 0.6,
         categoryPercentage: 0.8,
@@ -43,7 +43,7 @@ const chartData = computed<ChartData<'bar'>>(() => {
       {
         label: "Produits vendus",
         data: props.productsData,
-        backgroundColor: '#f59e0b', // amber-500
+        backgroundColor: '#f59e0b',
         borderRadius: 4,
         barPercentage: 0.6,
         categoryPercentage: 0.8,

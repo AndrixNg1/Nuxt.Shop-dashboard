@@ -38,7 +38,7 @@ const chartData = computed<ChartData<'line'>>(() => {
       {
         label: "Chiffre d'affaires (€)",
         data: props.data,
-        borderColor: '#9333ea', // purple-600
+        borderColor: '#9333ea',
         backgroundColor: 'rgba(147, 51, 234, 0.1)',
         borderWidth: 3,
         pointBackgroundColor: '#ffffff',
@@ -47,7 +47,7 @@ const chartData = computed<ChartData<'line'>>(() => {
         pointRadius: 4,
         pointHoverRadius: 6,
         fill: true,
-        tension: 0.4, // Smooth curve
+        tension: 0.4,
       },
     ],
   };
@@ -62,9 +62,9 @@ const chartOptions = computed<ChartOptions<'line'>>(() => {
         display: false,
       },
       tooltip: {
-        backgroundColor: 'rgba(17, 24, 39, 0.9)', // gray-900
+        backgroundColor: 'rgba(17, 24, 39, 0.9)',
         titleColor: '#ffffff',
-        bodyColor: '#e5e7eb', // gray-200
+        bodyColor: '#e5e7eb',
         padding: 12,
         cornerRadius: 8,
         displayColors: false,
@@ -89,7 +89,7 @@ const chartOptions = computed<ChartOptions<'line'>>(() => {
           drawBorder: false,
         },
         ticks: {
-          color: '#9ca3af', // gray-400
+          color: '#9ca3af',
           font: {
             family: 'Inter, sans-serif',
             size: 12,
@@ -98,7 +98,7 @@ const chartOptions = computed<ChartOptions<'line'>>(() => {
       },
       y: {
         grid: {
-          color: 'rgba(156, 163, 175, 0.1)', // gray-400 with opacity
+          color: 'rgba(156, 163, 175, 0.1)',
           drawBorder: false,
         },
         ticks: {

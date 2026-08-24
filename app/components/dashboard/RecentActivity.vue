@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DashboardActivity } from "~/types/dashboard";
+import AppCard from "~/components/ui/AppCard.vue";
 
 defineProps<{ activities: DashboardActivity[] }>();
 

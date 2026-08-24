@@ -44,7 +44,7 @@ const chartData = computed<ChartData<'bar'>>(() => {
 
 const chartOptions = computed<ChartOptions<'bar'>>(() => {
   return {
-    indexAxis: 'y', // This makes it horizontal
+    indexAxis: 'y',
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -83,7 +83,7 @@ const chartOptions = computed<ChartOptions<'bar'>>(() => {
       y: {
         grid: { display: false, drawBorder: false },
         ticks: {
-          color: '#6b7280', // gray-500
+          color: '#6b7280',
           font: { family: 'Inter, sans-serif', size: 12, weight: 'bold' }
         }
       }

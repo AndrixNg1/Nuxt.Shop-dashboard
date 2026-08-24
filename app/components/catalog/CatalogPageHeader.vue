@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import AppButton from '~/components/ui/AppButton.vue';
+
 defineProps<{
   eyebrow: string;
   title: string;
   description: string;
-  actionLabel: string;
+  actionLabel?: string;
 }>();
+defineEmits<{ (event: 'action'): void }>();
 </script>
 
 <template>
@@ -26,6 +29,6 @@ defineProps<{
         {{ description }}
       </p>
     </div>
-    <AppButton class="shrink-0">＋ {{ actionLabel }}</AppButton>
+    <AppButton v-if="actionLabel" class="shrink-0" @click="$emit('action')">＋ {{ actionLabel }}</AppButton>
   </section>
 </template>

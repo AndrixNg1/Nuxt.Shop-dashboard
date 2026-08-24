@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import ThemeToggle from '~/components/layout/ThemeToggle.vue';
+import UserAvatar from '~/components/ui/UserAvatar.vue';
+
 const isSidebarOpen = ref(false);
 const closeSidebar = () => { isSidebarOpen.value = false; };
 const isNotifOpen = ref(false);

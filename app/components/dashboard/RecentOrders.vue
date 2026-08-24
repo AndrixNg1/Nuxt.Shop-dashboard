@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DashboardOrder } from "~/types/dashboard";
+import AppCard from "~/components/ui/AppCard.vue";
 import UserAvatar from "~/components/ui/UserAvatar.vue";
 import StatusBadge from "~/components/ui/StatusBadge.vue";
 
