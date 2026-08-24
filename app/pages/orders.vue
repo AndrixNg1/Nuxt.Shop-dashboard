@@ -140,6 +140,8 @@ const orders = ref<Order[]>([
 const search = ref("");
 const activeFilter = ref("all");
 const selectedIds = ref<string[]>([]);
+const page = ref(1);
+const pageSize = 10;
 const filters: ResourceFilter[] = [
   { label: "Toutes", value: "all" },
   { label: "Payées", value: "success" },
@@ -156,6 +158,7 @@ const filteredOrders = computed(() =>
         .includes(search.value.toLowerCase()),
   ),
 );
+const paginatedOrders = computed(() => filteredOrders.value.slice((page.value - 1) * pageSize, page.value * pageSize));
 const summary = computed(() => ({
   total: orders.value.length,
   paid: orders.value.filter((order) => order.status === "success").length,
@@ -177,6 +180,8 @@ const changeStatus = (id: string, status: OrderStatus, label: string) => {
   }
 };
 const viewOrder = (id: string) => console.log("Voir commande", id);
+const updateSearch = (value: string) => { search.value = value; page.value = 1; };
+const updateFilter = (value: string) => { activeFilter.value = value; page.value = 1; };
 </script>
 
 <template>
@@ -227,8 +232,8 @@ const viewOrder = (id: string) => console.log("Voir commande", id);
           :filters="filters"
           placeholder="Rechercher une commande, un client..."
           resource-label="commandes"
-          @update:search="search = $event"
-          @update:active-filter="activeFilter = $event"
+          @update:search="updateSearch"
+          @update:active-filter="updateFilter"
         />
       </div>
       <div v-if="filteredOrders.length === 0" class="flex-1">
@@ -240,7 +245,7 @@ const viewOrder = (id: string) => console.log("Voir commande", id);
       </div>
       <div v-else class="flex-1 overflow-auto px-6">
         <OrdersTable
-          :orders="filteredOrders"
+          :orders="paginatedOrders"
           :selected-ids="selectedIds"
           @select="toggleSelect"
           @view="viewOrder"
@@ -248,9 +253,11 @@ const viewOrder = (id: string) => console.log("Voir commande", id);
         />
       </div>
       <ResourcePagination
-        :shown="filteredOrders.length"
-        :total="orders.length"
+        :page="page"
+        :page-size="pageSize"
+        :total="filteredOrders.length"
         label="commandes"
-    /></AppCard>
+        @update:page="page = $event"
+      /></AppCard>
   </div>
 </template>

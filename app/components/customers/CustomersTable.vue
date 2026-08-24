@@ -1,19 +1,7 @@
 <script setup lang="ts">
 import UserAvatar from '~/components/ui/UserAvatar.vue';
 import StatusBadge from '~/components/ui/StatusBadge.vue';
-
-export interface Customer {
-  id: string;
-  name: string;
-  initials: string;
-  email: string;
-  phone: string;
-  location: string;
-  totalOrders: number;
-  totalSpent: string;
-  status: 'active' | 'inactive' | 'blocked';
-  statusLabel: string;
-}
+import type { Customer } from '~/types/customers';
 
 defineProps<{
   customers: Customer[];

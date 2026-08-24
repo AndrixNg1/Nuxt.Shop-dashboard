@@ -88,10 +88,16 @@ const products = ref<Product[]>([
     status: "archived",
     statusLabel: "Archivé",
   },
+  { id: "PRD-009", name: "Formation Express", category: "Services", price: "79,00 €", stock: 18, status: "active", statusLabel: "Actif" },
+  { id: "PRD-010", name: "Guide SEO 2026", category: "Digital", price: "39,00 €", stock: 999, status: "active", statusLabel: "Actif" },
+  { id: "PRD-011", name: "Pack Business", category: "Packs", price: "249,00 €", stock: 7, status: "active", statusLabel: "Actif" },
+  { id: "PRD-012", name: "Audit Express", category: "Services", price: "59,00 €", stock: 0, status: "out_of_stock", statusLabel: "Rupture" },
 ]);
 const search = ref("");
 const activeFilter = ref("all");
 const selectedIds = ref<string[]>([]);
+const page = ref(1);
+const pageSize = 10;
 const filters: ResourceFilter[] = [
   { label: "Tous", value: "all" },
   { label: "Actifs", value: "active" },
@@ -108,6 +114,7 @@ const filteredProducts = computed(() =>
         .includes(search.value.toLowerCase()),
   ),
 );
+const paginatedProducts = computed(() => filteredProducts.value.slice((page.value - 1) * pageSize, page.value * pageSize));
 const summary = computed(() => ({
   total: products.value.length,
   active: products.value.filter((product) => product.status === "active")
@@ -132,6 +139,8 @@ const changeStatus = (id: string, status: ProductStatus, label: string) => {
   }
 };
 const editProduct = (id: string) => console.log("Modifier produit", id);
+const updateSearch = (value: string) => { search.value = value; page.value = 1; };
+const updateFilter = (value: string) => { activeFilter.value = value; page.value = 1; };
 </script>
 
 <template>
@@ -182,8 +191,8 @@ const editProduct = (id: string) => console.log("Modifier produit", id);
           :filters="filters"
           placeholder="Rechercher un produit, une référence..."
           resource-label="produits"
-          @update:search="search = $event"
-          @update:active-filter="activeFilter = $event"
+          @update:search="updateSearch"
+          @update:active-filter="updateFilter"
         />
       </div>
       <div v-if="filteredProducts.length === 0" class="flex-1">
@@ -195,7 +204,7 @@ const editProduct = (id: string) => console.log("Modifier produit", id);
       </div>
       <div v-else class="flex-1 overflow-auto px-6">
         <ProductsTable
-          :products="filteredProducts"
+          :products="paginatedProducts"
           :selected-ids="selectedIds"
           @select="toggleSelect"
           @edit="editProduct"
@@ -203,9 +212,11 @@ const editProduct = (id: string) => console.log("Modifier produit", id);
         />
       </div>
       <ResourcePagination
-        :shown="filteredProducts.length"
-        :total="products.length"
+        :page="page"
+        :page-size="pageSize"
+        :total="filteredProducts.length"
         label="produits"
+        @update:page="page = $event"
     /></AppCard>
   </div>
 </template>
