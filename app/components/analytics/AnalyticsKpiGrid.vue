@@ -1,0 +1,9 @@
+<script setup lang="ts">
+import type { AnalyticsSummary } from '~/types/analytics'
+
+defineProps<{ summary: AnalyticsSummary }>()
+const cards = [{ key: 'revenue', label: "Chiffre d'affaires", tone: 'purple', icon: '€' }, { key: 'orders', label: 'Commandes', tone: 'sky', icon: '▤' }, { key: 'conversion', label: 'Taux de conversion', tone: 'amber', icon: '↗' }, { key: 'aov', label: 'Panier moyen', tone: 'emerald', icon: '⌁' }] as const
+const toneClasses: Record<string, string> = { purple: 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400', sky: 'bg-sky-100 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400', amber: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400', emerald: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' }
+</script>
+
+<template><section class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"><article v-for="card in cards" :key="card.key" class="flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-[#20202d]"><div class="mb-1 flex items-center justify-between"><p class="text-sm font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{{ card.label }}</p><span class="flex h-8 w-8 items-center justify-center rounded-lg" :class="toneClasses[card.tone]">{{ card.icon }}</span></div><p class="text-3xl font-extrabold text-gray-900 dark:text-white">{{ summary[card.key] }}</p><div class="mt-1 flex items-center gap-1.5"><span class="rounded-md px-1.5 py-0.5 text-xs font-bold" :class="summary[`${card.key}Growth`].startsWith('-') ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400' : 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'">{{ summary[`${card.key}Growth`] }}</span><span class="text-xs text-gray-400">vs période préc.</span></div></article></section></template>
