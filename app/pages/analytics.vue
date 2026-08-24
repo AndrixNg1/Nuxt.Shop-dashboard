@@ -83,19 +83,13 @@ const topCustomersData = [1450, 890, 640, 295, 49];
 
 // Recent activity mock
 const recentActivities = [
-  { id: 1, title: 'Nouvelle commande #SF-10482', time: 'Il y a 5 min', icon: '📦', color: 'bg-purple-100 text-purple-600' },
-  { id: 2, title: 'Nouveau client: Sophie Dubois', time: 'Il y a 12 min', icon: '👤', color: 'bg-emerald-100 text-emerald-600' },
-  { id: 3, title: 'Rupture de stock: Offre Premium', time: 'Il y a 1h', icon: '⚠️', color: 'bg-red-100 text-red-600' },
-  { id: 4, title: 'Avis client 5 étoiles reçu', time: 'Il y a 2h', icon: '⭐', color: 'bg-amber-100 text-amber-600' },
-  { id: 5, title: 'Commande #SF-10478 expédiée', time: 'Il y a 3h', icon: '🚚', color: 'bg-sky-100 text-sky-600' },
+  { id: 1, title: 'Nouvelle commande #SF-10482', time: 'Il y a 5 min', icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>', color: 'bg-purple-100 text-purple-600' },
+  { id: 2, title: 'Nouveau client: Sophie Dubois', time: 'Il y a 12 min', icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>', color: 'bg-emerald-100 text-emerald-600' },
+  { id: 3, title: 'Rupture de stock: Offre Premium', time: 'Il y a 1h', icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>', color: 'bg-red-100 text-red-600' },
+  { id: 4, title: 'Avis client 5 étoiles reçu', time: 'Il y a 2h', icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>', color: 'bg-amber-100 text-amber-600' },
+  { id: 5, title: 'Commande #SF-10478 expédiée', time: 'Il y a 3h', icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>', color: 'bg-sky-100 text-sky-600' },
 ];
 
-const recentOrders = [
-  { id: '#SF-10482', customer: 'Sophie Dubois', amount: '129,00 €', status: 'Payée', statusClass: 'bg-emerald-100 text-emerald-700' },
-  { id: '#SF-10481', customer: 'Thomas Bernard', amount: '89,00 €', status: 'En attente', statusClass: 'bg-amber-100 text-amber-700' },
-  { id: '#SF-10480', customer: 'Emma Laurent', amount: '49,90 €', status: 'Payée', statusClass: 'bg-emerald-100 text-emerald-700' },
-  { id: '#SF-10479', customer: 'Lucas Moreau', amount: '129,00 €', status: 'Remboursée', statusClass: 'bg-red-100 text-red-700' },
-];
 
 </script>
 
@@ -270,8 +264,8 @@ const recentOrders = [
       </div>
     </section>
 
-    <!-- Bottom Grids: Recent Activity & Recent Orders -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-8">
+    <!-- Bottom Grids: Recent Activity -->
+    <section class="pb-8">
       <!-- Activité Récente -->
       <div class="bg-white dark:bg-[#20202d] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden flex flex-col">
         <div class="p-6 border-b border-gray-100 dark:border-gray-800/60 flex justify-between items-center">
@@ -283,49 +277,15 @@ const recentOrders = [
             <li 
               v-for="activity in recentActivities" 
               :key="activity.id"
-              class="group/item flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:scale-[1.02] hover:shadow-md hover:shadow-gray-200/50 dark:hover:shadow-black/20 cursor-pointer"
+              class="group/item flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:scale-[1.01] hover:shadow-md hover:shadow-gray-200/50 dark:hover:shadow-black/20 cursor-pointer"
             >
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover/item:scale-110" :class="activity.color">
-                {{ activity.icon }}
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover/item:scale-110" :class="activity.color" v-html="activity.icon">
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-bold text-gray-900 dark:text-white truncate">{{ activity.title }}</p>
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ activity.time }}</p>
               </div>
               <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 opacity-0 -translate-x-2 transition-all duration-300 group-hover/item:opacity-100 group-hover/item:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Commandes Récentes -->
-      <div class="bg-white dark:bg-[#20202d] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden flex flex-col">
-        <div class="p-6 border-b border-gray-100 dark:border-gray-800/60 flex justify-between items-center">
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Commandes récentes</h3>
-          <button class="text-sm font-semibold text-purple-600 hover:text-purple-700 transition-colors">Voir toutes</button>
-        </div>
-        <div class="p-2">
-          <ul class="flex flex-col gap-1">
-            <li 
-              v-for="order in recentOrders" 
-              :key="order.id"
-              class="group/item flex items-center justify-between gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:scale-[1.02] hover:shadow-md hover:shadow-gray-200/50 dark:hover:shadow-black/20 cursor-pointer"
-            >
-              <div class="flex items-center gap-4">
-                <div class="flex flex-col">
-                  <span class="text-sm font-bold text-gray-900 dark:text-white">{{ order.customer }}</span>
-                  <span class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 font-mono">{{ order.id }}</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-4 text-right">
-                <div class="flex flex-col items-end gap-1">
-                  <span class="text-sm font-bold text-gray-900 dark:text-white">{{ order.amount }}</span>
-                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md" :class="order.statusClass">
-                    {{ order.status }}
-                  </span>
-                </div>
-                <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 opacity-0 -translate-x-2 transition-all duration-300 group-hover/item:opacity-100 group-hover/item:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-              </div>
             </li>
           </ul>
         </div>
