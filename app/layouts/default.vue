@@ -60,10 +60,15 @@ const currentPageName = computed(() => pageNames[route.path] ?? route.path.repla
           <strong>Besoin d'aide ?</strong><span>Notre équipe est là pour vous.</span><button>Contacter le
             support</button>
         </div>
-        <button class="flex items-center justify-center gap-3 w-full px-4 py-3 mt-2 rounded-xl text-sm font-semibold text-red-600 dark:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors focus:outline-none">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-          Déconnexion
-        </button>
+        <div class="profile mt-2">
+          <div class="avatar avatar--small">AN</div>
+          <div class="profile__info">
+            <strong>Andrix-ng</strong><span>Administrateur</span>
+          </div>
+          <button class="text-red-500 hover:text-red-600 ml-auto transition-colors focus:outline-none p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20" title="Déconnexion">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          </button>
+        </div>
       </div>
     </aside>
     <div v-if="isSidebarOpen" class="sidebar-overlay" @click="closeSidebar" />
@@ -145,7 +150,10 @@ const currentPageName = computed(() => pageNames[route.path] ?? route.path.repla
             </transition>
           </div>
 
-          <UserAvatar initials="AM" class="ml-2" />
+          <NuxtLink to="/settings" class="flex items-center gap-3 ml-2 hover:bg-gray-50 dark:hover:bg-white/5 p-1.5 pr-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500/50">
+            <UserAvatar initials="AN" />
+            <span class="text-sm font-bold text-gray-800 dark:text-gray-200 hidden md:block">Andrix-ng</span>
+          </NuxtLink>
         </div>
       </header>
       <div class="page-content">
