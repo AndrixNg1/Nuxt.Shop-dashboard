@@ -1,1 +1,5 @@
-<template><div class="app-card"><slot /></div></template>
+<template>
+    <div class="app-card">
+        <slot />
+    </div>
+</template>
