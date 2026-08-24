@@ -1,14 +1,5 @@
 <script setup lang="ts">
-export interface Order {
-  id: string;
-  customer: string;
-  initials: string;
-  product: string;
-  date: string;
-  amount: string;
-  status: 'success' | 'warning' | 'danger' | 'info' | 'neutral';
-  statusLabel: string;
-}
+import type { Order } from '~/types/catalog';
 
 defineProps<{
   orders: Order[];

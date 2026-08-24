@@ -1,13 +1,5 @@
 <script setup lang="ts">
-export interface Product {
-  id: string;
-  name: string;
-  category: string;
-  price: string;
-  stock: number;
-  status: 'active' | 'draft' | 'archived' | 'out_of_stock';
-  statusLabel: string;
-}
+import type { Product } from '~/types/catalog';
 
 defineProps<{
   products: Product[];
