@@ -33,13 +33,6 @@ const toggleNotif = () => {
             class="nav-link__icon">⚙</span>Paramètres</NuxtLink>
       </nav>
       <div class="sidebar__bottom">
-        <div class="sidebar-theme-control">
-          <div>
-            <span class="sidebar-theme-control__icon">◐</span><span><strong>Thème de l'interface</strong><small>Clair ou
-                sombre</small></span>
-          </div>
-          <ThemeToggle />
-        </div>
         <div class="help-card">
           <div class="help-card__icon">?</div>
           <strong>Besoin d'aide ?</strong><span>Notre équipe est là pour vous.</span><button>Contacter le
